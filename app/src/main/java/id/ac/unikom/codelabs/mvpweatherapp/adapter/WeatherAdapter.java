@@ -47,6 +47,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         return weathers.size();
     }
 
+    public void replaceData(List<Weather> cuacaList) {
+        weathers = cuacaList;
+        notifyDataSetChanged();
+    }
+
     protected class WeatherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView mTvTemp;
@@ -66,7 +71,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
         @Override
         public void onClick(View v) {
-
+            Weather weather = weathers.get(getAdapterPosition());
+            mListener.onWeatherItemClick(weather);
         }
     }
 
